@@ -56,13 +56,13 @@ namespace project
 
             char[] sentence = Console.ReadLine().ToArray<char>();
             string substring = Console.ReadLine();
-            int len = substring.Length, k = 0;
+            int len = substring.Length, count = 0;
 
             for (int i = 0; i <= (sentence.Length - len); i++)
             {
-                if (Convert.ToString(string.Join("", sentence[i..(i + len)])) == substring) k++;
+                if (string.Join("", sentence[i..(i + len)]) == substring) count++;
             }
-            Console.WriteLine($"{k} substring(s)");
+            Console.WriteLine($"{count} substring(s)");
 
 
             //Console.WriteLine("\nзадание 5");
