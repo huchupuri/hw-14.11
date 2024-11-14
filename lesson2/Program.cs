@@ -22,7 +22,7 @@ namespace lab
             //значениями и напечатать результат.
 
             Console.WriteLine("лаба 3.2");
-
+            
             BankBill bankBill = new BankBill(1111, bankType, 2222);
             bankBill.Print();
 
@@ -46,10 +46,20 @@ namespace lab
         }
     }
 
+    /// <summary>
+    /// структура для работников вуза
+    /// </summary>
     public struct Worker
     {
-        public readonly string name;
+        /// <summary>
+        /// инициализация параметров экзепляра
+        /// </summary>
+        public string name;
         public University university;
+
+        /// <summary>
+        /// создание конструктора структуры
+        /// </summary>
         public Worker(string name, University university)
         {
             this.name = name;
@@ -58,26 +68,47 @@ namespace lab
         public void Print() => Console.WriteLine($"работник: {name}     вуз: {university}");
     }
 
+    /// <summary>
+    /// университеты
+    /// </summary>
     public enum University { KGU, KAI, KChTI }
 
+    /// <summary>
+    /// виды счетов в банке
+    /// </summary>
     public enum AccountType
     {
         undefine,
         savings,
         debit
     }
+
+
+    /// <summary>
+    /// информация о банковском счёте
+    /// </summary>
     public struct BankBill
     {
+        /// <summary>
+        /// инициализация параметров экзепляра
+        /// </summary>
         public int id;
         readonly public AccountType account { get; }
         public int bill;
 
+        /// <summary>
+        /// создание конструктора структуры
+        /// </summary>
         public BankBill(int id, AccountType account, int bill)
         {
             this.id = id;
             this.account = account;
             this.bill = bill;
         }
+
+        /// <summary>
+        /// вывод информации об экземпляре
+        /// </summary>
         public void Print()
 
         {

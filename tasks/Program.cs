@@ -103,8 +103,8 @@ namespace project
             Console.Write("скидка:");
             while (true)
             {
-                if (saleCheck = double.TryParse(Console.ReadLine(), out salePrice) && salePrice > 0) break;
-                else Console.WriteLine("введите число > 0");
+                if (saleCheck = double.TryParse(Console.ReadLine(), out salePrice) && salePrice > 0 && salePrice < 100) break;
+                else Console.WriteLine("введите число >0 и <=100");
             }
             salePrice = 1 - salePrice * 0.01;
             Console.Write("стоимость отпуска:");
@@ -149,26 +149,55 @@ namespace project
 
         }
     }
+
+
+    /// <summary>
+    /// параметры пользователя
+    /// </summary>
     public struct User
     {
+        /// <summary>
+        /// инициализация имени, города, возраста, ПИН-кода
+        /// </summary>
         public string name, city;
         public int age, pin;
+        
+        /// <summary>
+        /// созданеи конструктора структуры
+        /// </summary>
+        
         public User(string name, string city)
         {
             this.name = name;
             this.city = city;
         }
+        
+        /// <summary>
+        /// вывод информации об экземпляре
+        /// </summary>
         public void Print() => Console.WriteLine($"имя: {name} || город: {city} || возраст: {age} || PIN: {pin}");
 
     }
 
+
+
+    /// <summary>
+    /// параметры студента
+    /// </summary>
     public struct Student
     {
+        /// <summary>
+        /// инициализация параметров экзепляра
+        /// </summary>
         public string surname, name, login;
         DateTime birthDay;
         char alcoholCategory;
         public double volume;
         public AlcoholType alcohole;
+
+        /// <summary>
+        /// создание конструктора структуры
+        /// </summary>
         public Student(string name, string surname, string login,
         DateTime birthDay, char alcoholCategory, double volume, AlcoholType alcohole)
         {
@@ -180,6 +209,10 @@ namespace project
             this.volume = volume;
             this.alcohole = alcohole;
         }
+
+        /// <summary>
+        /// подсчет выпитого спирта
+        /// </summary>
         public double AlcVolume()
         {
             return (volume * alcohole.percentage);
@@ -187,17 +220,29 @@ namespace project
     }
 
 
-
+    /// <summary>
+    /// напитки с их %спирта
+    /// </summary>
     public struct AlcoholType
     {
+        /// <summary>
+        /// инициализация параметров экзепляра
+        /// </summary>
         public Drink drink;
         public double percentage;
+        /// <summary>
+        /// создание конструктора структуры
+        /// </summary>
         public AlcoholType(Drink drink, double percentage)
         {
             this.drink = drink;
             this.percentage = percentage;
         }
     }
+
+    /// <summary>
+    /// виды напитков
+    /// </summary>
     public enum Drink { pivo, pivas, kvas, whiskey }
 
 }
