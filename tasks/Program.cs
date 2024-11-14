@@ -12,43 +12,43 @@ namespace project
             //Тип данных – максимальное значение – минимальное значение
             //Console.WriteLine("задание 1");
 
-            //Console.WriteLine("Тип данных – максимальное значение – минимальное значение");
-            //Console.WriteLine($"byte: {byte.MaxValue} – {byte.MinValue}");
-            //Console.WriteLine($"sbyte: {sbyte.MaxValue} – {sbyte.MinValue}");
-            //Console.WriteLine($"short: {short.MaxValue} – {short.MinValue}");
-            //Console.WriteLine($"ushort: {ushort.MaxValue} – {ushort.MinValue}");
-            //Console.WriteLine($"int: {int.MaxValue} – {int.MinValue}");
-            //Console.WriteLine($"uint: {uint.MaxValue} – {uint.MinValue}");
-            //Console.WriteLine($"long: {long.MaxValue} – {long.MinValue}");
-            //Console.WriteLine($"ulong: {ulong.MaxValue} – {ulong.MinValue}");
-            //Console.WriteLine($"float: {float.MaxValue} – {float.MinValue}");
-            //Console.WriteLine($"double: {double.MaxValue} – {double.MinValue}");
-            //Console.WriteLine($"decimal: {decimal.MaxValue} – {decimal.MinValue}");
-            //Console.WriteLine($"char: {char.MaxValue} – {char.MinValue}");
+            Console.WriteLine("Тип данных – максимальное значение – минимальное значение");
+            Console.WriteLine($"byte: {byte.MaxValue} – {byte.MinValue}");
+            Console.WriteLine($"sbyte: {sbyte.MaxValue} – {sbyte.MinValue}");
+            Console.WriteLine($"short: {short.MaxValue} – {short.MinValue}");
+            Console.WriteLine($"ushort: {ushort.MaxValue} – {ushort.MinValue}");
+            Console.WriteLine($"int: {int.MaxValue} – {int.MinValue}");
+            Console.WriteLine($"uint: {uint.MaxValue} – {uint.MinValue}");
+            Console.WriteLine($"long: {long.MaxValue} – {long.MinValue}");
+            Console.WriteLine($"ulong: {ulong.MaxValue} – {ulong.MinValue}");
+            Console.WriteLine($"float: {float.MaxValue} – {float.MinValue}");
+            Console.WriteLine($"double: {double.MaxValue} – {double.MinValue}");
+            Console.WriteLine($"decimal: {decimal.MaxValue} – {decimal.MinValue}");
+            Console.WriteLine($"char: {char.MaxValue} – {char.MinValue}");
 
             //Напишите программу, в которой принимаются данные пользователя в виде имени,
             //города, возраста и PIN - кода.Далее сохраните все значение в соответствующей
             //переменной, а затем распечатайте всю информацию в правильном формате.
             Console.WriteLine("\nзадание 2");
-
-            User johan = new User("Jhan", "Kazan", 18, 1488);
-            //johan.Print();
+            string[] user = Console.ReadLine().Split(' ');   
+            User johan = new User(user[0], user[1], int.Parse(user[2]) , int.Parse(user[3]));
+            johan.Print();
 
             //Преобразуйте входную строку: строчные буквы замените на заглавные, заглавные– на строчные
 
-            //char[] sentence = Console.ReadLine().ToCharArray();
-            //for (int i = 0; i < sentence.Length; i++)
-            //{
-            //    if (Char.IsLower(sentence[i]))
-            //    {
-            //        sentence[i] = char.ToUpper(sentence[i]);
-            //    }
-            //    else
-            //    {
-            //        sentence[i] = char.ToLower(sentence[i]);
-            //    }
-            //}
-            //Console.WriteLine(sentence);
+            char[] sentence = Console.ReadLine().ToCharArray();
+            for (int i = 0; i < sentence.Length; i++)
+            {
+                if (Char.IsLower(sentence[i]))
+                {
+                    sentence[i] = char.ToUpper(sentence[i]);
+                }
+                else
+                {
+                    sentence[i] = char.ToLower(sentence[i]);
+                }
+            }
+            Console.WriteLine(sentence);
 
             Console.WriteLine("\nзадание 4");
 
@@ -66,49 +66,53 @@ namespace project
 
 
             //Console.WriteLine("\nзадание 5");
+            //Цель этой задачи - определить, сколько бутылок виски беспошлинной торговли 
+            //вам нужно будет купить, чтобы экономия по сравнению с обычной средней ценой фактически 
+            //покрыла расходы на ваш отпуск.
 
-            //Console.Write("стандартная цена:");
-            //bool priceCheck = double.TryParse(Console.ReadLine(), out double normalPrice);
-            //Console.Write("скидка:");
-            //bool saleCheck = double.TryParse(Console.ReadLine(), out double salePrice);
-            //salePrice = 1 - salePrice * 0.01;
-            //Console.Write("стоимость отпуска:");
-            //bool holidayPriceCheck = double.TryParse(Console.ReadLine(), out double holidayPrice);
-            //if (priceCheck && saleCheck && holidayPriceCheck)
-            //{
-            //    Console.WriteLine($"{(int)(holidayPrice / (normalPrice - salePrice * normalPrice))} бутылок");
-            //}
-            //else Console.WriteLine("неправильный ввод");
+            Console.Write("стандартная цена:");
+            bool priceCheck = double.TryParse(Console.ReadLine(), out double normalPrice);
+            Console.Write("скидка:");
+            bool saleCheck = double.TryParse(Console.ReadLine(), out double salePrice);
+            salePrice = 1 - salePrice * 0.01;
+            Console.Write("стоимость отпуска:");
+            bool holidayPriceCheck = double.TryParse(Console.ReadLine(), out double holidayPrice);
+            if (priceCheck && saleCheck && holidayPriceCheck)
+            {
+                Console.WriteLine($"{(int)(holidayPrice / (normalPrice - salePrice * normalPrice))} бутылок");
+            }
+            else Console.WriteLine("неправильный ввод");
 
-            //Console.WriteLine("\nзадание 6\n");
+            Console.WriteLine("\nзадание 6\n");
+            //Создать структуру студента.У студента есть Фамилия, Имя, его Идентификатор, Дата рождения, Категория алкоголизма
 
-            //AlcoholType pivo = new AlcoholType(Drink.pivo, 5.4);
-            //AlcoholType pivas = new AlcoholType(Drink.pivas, 8);
-            //AlcoholType kvas = new AlcoholType(Drink.kvas, 1.2);
-            //AlcoholType whiskey = new AlcoholType(Drink.whiskey, 45.3);
+            AlcoholType pivo = new AlcoholType(Drink.pivo, 5.4);
+            AlcoholType pivas = new AlcoholType(Drink.pivas, 8);
+            AlcoholType kvas = new AlcoholType(Drink.kvas, 1.2);
+            AlcoholType whiskey = new AlcoholType(Drink.whiskey, 45.3);
 
-            //List<Student> units = new List<Student>();
+            List<Student> units = new List<Student>();
 
-            //units.Add(new Student("Евгений", "Пушин", "svin", new DateTime(2006, 1, 1), 'a', 5, whiskey));
-            //units.Add(new Student("Роман", "Романов", "romas", new DateTime(2006, 1, 2), 'a', 4, pivo));
-            //units.Add(new Student("Золтан", "Хивай", "zirilla.gif", new DateTime(1763, 11, 6), 'a', 20, pivas));
-            //units.Add(new Student("Фогель", "", "McLovin", new DateTime(2008, 1, 1), 'c', 2, whiskey));
-            //units.Add(new Student("George", "Smith", "D/I", new DateTime(2000, 1, 1), 'd', 3, pivas));
+            units.Add(new Student("Евгений", "Пушин", "svin", new DateTime(2006, 1, 1), 'a', 5, whiskey));
+            units.Add(new Student("Роман", "Романов", "romas", new DateTime(2006, 1, 2), 'a', 4, pivo));
+            units.Add(new Student("Золтан", "Хивай", "zirilla.gif", new DateTime(1763, 11, 6), 'a', 20, pivas));
+            units.Add(new Student("Фогель", "", "McLovin", new DateTime(2008, 1, 1), 'c', 2, whiskey));
+            units.Add(new Student("George", "Smith", "D/I", new DateTime(2000, 1, 1), 'd', 3, pivas));
 
 
-            //double commonVolume = 0;
-            //double commonAlc = 0;
+            double commonVolume = 0;
+            double commonAlc = 0;
 
-            //foreach (Student unit in units)
-            //{
-            //    commonVolume += unit.volume;
-            //    commonAlc += unit.volume * unit.alcohole.percentage * 0.01;
-            //}
-            //Console.WriteLine($"Всего выпито: {commonVolume}л. напитков, в которых содержалось {Math.Round(commonAlc, 2)}л. спирта");
-            //foreach (Student unit in units)
-            //{
-            //    Console.WriteLine($"Студент {unit.name} {unit.surname} выпил {Math.Round((100*unit.volume / commonVolume), 1)}% от всех напитков и {Math.Round((unit.volume * unit.alcohole.percentage / commonAlc), 1)}% всего спирта");
-            //}
+            foreach (Student unit in units)
+            {
+                commonVolume += unit.volume;
+                commonAlc += unit.volume * unit.alcohole.percentage * 0.01;
+            }
+            Console.WriteLine($"Всего выпито: {commonVolume}л. напитков, в которых содержалось {Math.Round(commonAlc, 2)}л. спирта");
+            foreach (Student unit in units)
+            {
+                Console.WriteLine($"Студент {unit.name} {unit.surname} выпил {Math.Round((100 * unit.volume / commonVolume), 1)}% от всех напитков и {Math.Round((unit.volume * unit.alcohole.percentage / commonAlc), 1)}% всего спирта");
+            }
 
         }
     }
