@@ -30,25 +30,33 @@ namespace project
             //города, возраста и PIN - кода.Далее сохраните все значение в соответствующей
             //переменной, а затем распечатайте всю информацию в правильном формате.
             Console.WriteLine("\nзадание 2");
-            string[] user = Console.ReadLine().Split(' ');   
-            User johan = new User(user[0], user[1], int.Parse(user[2]) , int.Parse(user[3]));
+            Console.WriteLine("Введите имя, город, возраст и PIN-код");
+            string[] user = Console.ReadLine().Split(' ');
+            User johan = new User(user[0], user[1]);
+            if (int.TryParse(user[2], out int userAge) && int.TryParse(user[3], out int userPIN))
+            {
+                johan.age = userAge;
+                johan.pin = userPIN;
+            }
+            else Console.WriteLine("неправильный ввод");
+            
             johan.Print();
 
             //Преобразуйте входную строку: строчные буквы замените на заглавные, заглавные– на строчные
 
-            char[] sentence = Console.ReadLine().ToCharArray();
-            for (int i = 0; i < sentence.Length; i++)
+            char[] text = Console.ReadLine().ToCharArray();
+            for (int i = 0; i < text.Length; i++)
             {
-                if (Char.IsLower(sentence[i]))
+                if (Char.IsLower(text[i]))
                 {
-                    sentence[i] = char.ToUpper(sentence[i]);
+                    text[i] = char.ToUpper(text[i]);
                 }
                 else
                 {
-                    sentence[i] = char.ToLower(sentence[i]);
+                    text[i] = char.ToLower(text[i]);
                 }
             }
-            Console.WriteLine(sentence);
+            Console.WriteLine(text);
 
             Console.WriteLine("\nзадание 4");
 
@@ -114,10 +122,18 @@ namespace project
                 Console.WriteLine($"Студент {unit.name} {unit.surname} выпил {Math.Round((100 * unit.volume / commonVolume), 1)}% от всех напитков и {Math.Round((unit.volume * unit.alcohole.percentage / commonAlc), 1)}% всего спирта");
             }
 
+
         }
     }
-    public struct User(string name, string city, int age, int pin)
+    public struct User
     {
+        public string name, city;
+        public int age, pin;
+        public User(string name, string city)
+        {
+            this.name = name;
+            this.city = city;
+        }
         public void Print() => Console.WriteLine($"имя: {name} || город: {city} || возраст: {age} || PIN: {pin}");
 
     }
@@ -133,7 +149,7 @@ namespace project
         DateTime birthDay, char alcoholCategory, double volume, AlcoholType alcohole)
         {
             this.surname = surname;
-            this.name = name; 
+            this.name = name;
             this.login = login;
             this.birthDay = birthDay;
             this.alcoholCategory = alcoholCategory;
@@ -148,7 +164,7 @@ namespace project
 
 
 
-    public struct AlcoholType 
+    public struct AlcoholType
     {
         public Drink drink;
         public double percentage;
@@ -159,5 +175,5 @@ namespace project
         }
     }
     public enum Drink { pivo, pivas, kvas, whiskey }
-    
+
 }
