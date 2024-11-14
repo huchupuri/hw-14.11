@@ -1,6 +1,7 @@
 ﻿using System.IO.IsolatedStorage;
 using System.Net.NetworkInformation;
 using System.Reflection.Metadata.Ecma335;
+using System.Transactions;
 
 namespace project
 {
@@ -31,7 +32,13 @@ namespace project
             //переменной, а затем распечатайте всю информацию в правильном формате.
             Console.WriteLine("\nзадание 2");
             Console.WriteLine("Введите имя, город, возраст и PIN-код");
-            string[] user = Console.ReadLine().Split(' ');
+            string[] user;
+            while (true)
+            {
+                user = Console.ReadLine().Split(' ');
+                if (user.Length == 4) break;
+                else Console.WriteLine("введены не все данные");
+            }
             User johan = new User(user[0], user[1]);
             if (int.TryParse(user[2], out int userAge) && int.TryParse(user[3], out int userPIN))
             {
@@ -39,11 +46,11 @@ namespace project
                 johan.pin = userPIN;
             }
             else Console.WriteLine("неправильный ввод");
-            
+
             johan.Print();
 
             //Преобразуйте входную строку: строчные буквы замените на заглавные, заглавные– на строчные
-
+            Console.Write("Введите строку: ");
             char[] text = Console.ReadLine().ToCharArray();
             for (int i = 0; i < text.Length; i++)
             {
@@ -61,9 +68,16 @@ namespace project
             Console.WriteLine("\nзадание 4");
 
             //Введите строку, введите подстроку.Необходимо найти количество вхождений и вывести на экран.
-
+            Console.Write("Введите строку: ");
             char[] sentence = Console.ReadLine().ToArray<char>();
-            string substring = Console.ReadLine();
+            Console.Write("Введите подстроку: ");
+            string substring;
+            while (true)
+            {
+                substring = Console.ReadLine();
+                if (substring.Length != 0) break;
+                else Console.WriteLine("введите хоть что-то");
+            }
             int len = substring.Length, count = 0;
 
             for (int i = 0; i <= (sentence.Length - len); i++)
@@ -78,18 +92,28 @@ namespace project
             //вам нужно будет купить, чтобы экономия по сравнению с обычной средней ценой фактически 
             //покрыла расходы на ваш отпуск.
 
+            bool priceCheck, holidayPriceCheck, saleCheck;
+            double holidayPrice, salePrice, normalPrice;
             Console.Write("стандартная цена:");
-            bool priceCheck = double.TryParse(Console.ReadLine(), out double normalPrice);
+            while (true)
+            {
+                if (priceCheck = double.TryParse(Console.ReadLine(), out normalPrice) && normalPrice > 0) break;
+                else Console.WriteLine("введите число > 0");
+            }
             Console.Write("скидка:");
-            bool saleCheck = double.TryParse(Console.ReadLine(), out double salePrice);
+            while (true)
+            {
+                if (saleCheck = double.TryParse(Console.ReadLine(), out salePrice) && salePrice > 0) break;
+                else Console.WriteLine("введите число > 0");
+            }
             salePrice = 1 - salePrice * 0.01;
             Console.Write("стоимость отпуска:");
-            bool holidayPriceCheck = double.TryParse(Console.ReadLine(), out double holidayPrice);
-            if (priceCheck && saleCheck && holidayPriceCheck)
+            while (true)
             {
-                Console.WriteLine($"{(int)(holidayPrice / (normalPrice - salePrice * normalPrice))} бутылок");
+                if (holidayPriceCheck = double.TryParse(Console.ReadLine(), out holidayPrice) && holidayPrice > 0) break;
+                else Console.WriteLine("введите число > 0");
             }
-            else Console.WriteLine("неправильный ввод");
+            Console.WriteLine($"{(int)(holidayPrice / (normalPrice - salePrice * normalPrice))} бутылок");
 
             Console.WriteLine("\nзадание 6\n");
             //Создать структуру студента.У студента есть Фамилия, Имя, его Идентификатор, Дата рождения, Категория алкоголизма
